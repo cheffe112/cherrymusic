@@ -496,7 +496,7 @@
 			playbackRate: 1,
 			defaultPlaybackRate: 1,
 			minPlaybackRate: 0.5,
-			maxPlaybackRate: 4,
+			maxPlaybackRate: 1.5,
 			wmode: "opaque", // Valid wmode: window, transparent, opaque, direct, gpu. 
 			backgroundColor: "#000000", // To define the jPlayer div and Flash background color.
 			cssSelectorAncestor: "#jp_container_1",

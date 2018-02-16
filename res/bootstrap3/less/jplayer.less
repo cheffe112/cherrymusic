@@ -61,8 +61,8 @@
     &-control-buttons{
         position: absolute;
         left: 50%;
-        width: 240px;
-        margin-left: -120px;
+        width: 380px;
+        margin-left: -190px;
         bottom: 42px
     }
 
@@ -120,6 +120,33 @@
             top: 0;
         }
         &-max{
+            margin-left: 6px;
+            padding: 1px 4px !important;
+            top: 0;
+        }
+    }
+    &-playback-rate{    
+        &-toggles{
+            list-style: none outside none;
+            position: absolute;
+            left: 250px;
+            padding: 0;
+        }
+        &-bar{
+            height: 6px !important;
+            position: absolute;
+            width: 60px;
+            top: 28px;
+        }
+        &-bar-value{
+            margin-left: 6px;
+            padding: 1px 4px !important;
+            top: 0;
+        }
+        &-toggles li{
+            display: inline;
+        }
+        &-reset{
             margin-left: 6px;
             padding: 1px 4px !important;
             top: 0;

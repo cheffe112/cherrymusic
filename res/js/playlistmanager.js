@@ -256,7 +256,7 @@ PlaylistManager = function(){
     this.cssSelector.previous = this.cssSelectorJPlayerControls + " .jp-previous";
     this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
     this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
-
+    this.cssSelector.playback-rate = this.cssSelectorJPlayerControls + " .jp-playback-rate";
 
     $(this.cssSelectorjPlayer).bind($.jPlayer.event.ready, function(event) {
         self.restorePlaylists();
@@ -317,11 +317,14 @@ PlaylistManager.prototype = {
                 cssSelectorAncestor: self.cssSelectorJPlayerControls,
                 errorAlerts: false,
                 repeat: self._getRepeatHandler()
+//                playbackRate:1.5,
+//                defaultPlaybackRate:1.5
             });
             this.cssSelector.next = this.cssSelectorJPlayerControls + " .jp-next";
             this.cssSelector.previous = this.cssSelectorJPlayerControls + " .jp-previous";
             this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
             this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
+            this.cssSelector.playbackRateReset = this.cssSelectorJPlayerControls + " .jp-playback-rate-reset";
 
             /* JPLAYER EVENT BINDINGS */
             $(this.cssSelectorjPlayer).bind($.jPlayer.event.ended, function(event) {
@@ -359,6 +362,12 @@ PlaylistManager.prototype = {
 
             $(this.cssSelector.next).click(function() {
                 self.cmd_next();
+                $(this).blur();
+                return false;
+            });
+
+            $(this.cssSelector.playbackRateReset).click(function() {
+                self.resetPlaybackRate();
                 $(this).blur();
                 return false;
             });
@@ -409,6 +418,12 @@ PlaylistManager.prototype = {
             }
             return false;
         }
+    },
+    resetPlaybackRate : function(){
+        //$(this.cssSelectorjPlayer).data().jPlayer.options.playbackRate = 1.5;
+        //$(this.cssSelectorjPlayer).data().jPlayer.options.defaultPlaybackRate = 1.5;
+        $(this.cssSelectorjPlayer).jPlayer("stop");
+        return false;
     },
     checkFlashBlock : function(){
         flashBlocked = false;
