@@ -256,7 +256,7 @@ PlaylistManager = function(){
     this.cssSelector.previous = this.cssSelectorJPlayerControls + " .jp-previous";
     this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
     this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
-    this.cssSelector.playback-rate = this.cssSelectorJPlayerControls + " .jp-playback-rate";
+    this.cssSelector.playbackRateReset = this.cssSelectorJPlayerControls + " .jp-playback-rate-reset";
 
     $(this.cssSelectorjPlayer).bind($.jPlayer.event.ready, function(event) {
         self.restorePlaylists();
