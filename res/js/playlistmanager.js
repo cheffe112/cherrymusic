@@ -325,6 +325,7 @@ PlaylistManager.prototype = {
             this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
             this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
             this.cssSelector.playbackRateReset = this.cssSelectorJPlayerControls + " .jp-playback-rate-reset";
+            this.cssSelector.download = this.cssSelectorJPlayerControls + " .jp-download";
 
             /* JPLAYER EVENT BINDINGS */
             $(this.cssSelectorjPlayer).bind($.jPlayer.event.ended, function(event) {
@@ -371,7 +372,11 @@ PlaylistManager.prototype = {
                 $(this).blur();
                 return false;
             });
-
+            $(this.cssSelector.download).click(function() {
+                self.download();
+                $(this).blur();
+                return false;
+            });
             $(this.cssSelector.shuffle).click(function() {
                 self.shuffleToggle();
                 self.refreshShuffle();
@@ -423,6 +428,11 @@ PlaylistManager.prototype = {
         //$(this.cssSelectorjPlayer).data().jPlayer.options.playbackRate = 1.5;
         //$(this.cssSelectorjPlayer).data().jPlayer.options.defaultPlaybackRate = 1.5;
         $(this.cssSelectorjPlayer).jPlayer("stop");
+        return false;
+    },
+    download : function(){
+        var url = $(this.cssSelectorjPlayer).data().jPlayer.status.src;
+        window.saveFile(url);
         return false;
     },
     checkFlashBlock : function(){
