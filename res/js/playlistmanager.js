@@ -425,9 +425,7 @@ PlaylistManager.prototype = {
         }
     },
     resetPlaybackRate : function(){
-        //$(this.cssSelectorjPlayer).data().jPlayer.options.playbackRate = 1.5;
-        //$(this.cssSelectorjPlayer).data().jPlayer.options.defaultPlaybackRate = 1.5;
-        $(this.cssSelectorjPlayer).jPlayer("stop");
+        $(this.cssSelectorjPlayer).jPlayer("playbackRate", 1);
         return false;
     },
     download : function(){
