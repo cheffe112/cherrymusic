@@ -512,6 +512,7 @@
 				volumeBar: ".jp-volume-bar",
 				volumeBarValue: ".jp-volume-bar-value",
 				volumeMax: ".jp-volume-max",
+				playbackRateValue: ".jp-playback-rate-value",
 				playbackRateBar: ".jp-playback-rate-bar",
 				playbackRateBarValue: ".jp-playback-rate-bar-value",
 				currentTime: ".jp-current-time",
@@ -2277,6 +2278,7 @@
 		_updatePlaybackRate: function() {
 			var pbr = this.options.playbackRate,
 				ratio = (pbr - this.options.minPlaybackRate) / (this.options.maxPlaybackRate - this.options.minPlaybackRate);
+			this.css.jq.playbackRateValue.text(pbr.toFixed(2)+"x");
 			if(this.status.playbackRateEnabled) {
 				if(this.css.jq.playbackRateBar.length) {
 					this.css.jq.playbackRateBar.show();
