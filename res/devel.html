@@ -172,6 +172,18 @@
                 <div class="control-group">
                     Display album art when playing <input type="checkbox" onchange="" id="ui-display_album_art" value="option1">
                 </div>
+                <div id="misc-automatic_tempo-container" class="control-group">
+                    <div class="control-group">
+                        If possible, set tempo automatically from MP3 tag <input type="checkbox" onchange="" id="misc-automatic_tempo" value="option1">
+                    </div>
+                    <div class="success">
+                        Tempo unit: 
+                        <select name="misc-automatic_tempo_unit" >
+                            <option value="bpm">BPM (beats per minute)</option>
+                            <option value="mpm">MPM (measures per minute)</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="media-force_transcode_to_bitrate-container" class="control-group">
                     <div class="success">
                         Limit audio bitrate

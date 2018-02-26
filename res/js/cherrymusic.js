@@ -249,6 +249,8 @@ function loadUserOptions(onSuccess){
         $('#keyboard_shortcuts-search').html(String.fromCharCode(userOptions.keyboard_shortcuts.search));
 
         $('#misc-autoplay_on_add').attr('checked',userOptions.misc.autoplay_on_add);
+        $('#misc-automatic_tempo').attr('checked',userOptions.misc.automatic_tempo);
+        $('#misc-automatic_tempo_unit').attr('checked',userOptions.misc.automatic_tempo_unit);
         $('#ui-confirm_quit_dialog').attr('checked',userOptions.ui.confirm_quit_dialog);
         $('#ui-display_album_art').attr('checked',userOptions.ui.display_album_art);
 
@@ -1270,6 +1272,10 @@ $(document).ready(function(){
                                'misc.show_playlist_download_buttons');
     userOptionCheckboxListener('#misc-autoplay_on_add',
                                'misc.autoplay_on_add');
+    userOptionCheckboxListener('#misc-automatic_tempo',
+                               'misc.automatic_tempo');
+    userOptionMultivalListener("select[name='misc-automatic_tempo_unit']",
+                                'misc.automatic_tempo_unit');
     userOptionCheckboxListener('#ui-confirm_quit_dialog',
                                'ui.confirm_quit_dialog');
     userOptionCheckboxListener('#ui-display_album_art',

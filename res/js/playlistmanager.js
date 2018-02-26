@@ -285,8 +285,13 @@ PlaylistManager = function(){
         if (track) {
             self.setAlbumArtDisplay(track);
         }
-        if (track.meta && track.meta.bpm && track.meta.bpm > 0) {
-            var desiredBPM = 160
+        if (userOptions.misc.automatic_tempo && track.meta && track.meta.bpm && track.meta.bpm > 0) {
+            var desiredBPM = 40
+            //var desiredBPM = userOptions.misc.automatic_tempo_value;
+            console.log("setting automatic tempo");
+            if (userOptions.misc.automatic_tempo_unit == 'mpm') {
+                desiredBPM = desiredBPM * 4;
+            }
             var playbackRate = desiredBPM / track.meta.bpm;
             self.setPlaybackRate(playbackRate);
         }

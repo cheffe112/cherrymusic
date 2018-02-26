@@ -61,6 +61,10 @@ class UserOptionDB:
             pl_download_buttons.value = False
         with c['misc.autoplay_on_add'] as autoplay_on_add:
             autoplay_on_add.value = False
+        with c['misc.automatic_tempo'] as automatic_tempo:
+            automatic_tempo.value = False
+        with c['misc.automatic_tempo_unit'] as automatic_tempo_unit:
+            automatic_tempo_unit.value = 'bpm'
         with c['custom_theme.primary_color'] as primary_color:
             primary_color.value = '#F02E75'
             primary_color.valid = '#[0-9a-fA-F]{6}'
