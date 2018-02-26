@@ -285,6 +285,11 @@ PlaylistManager = function(){
         if (track) {
             self.setAlbumArtDisplay(track);
         }
+        if (track.meta && track.meta.bpm && track.meta.bpm > 0) {
+            var desiredBPM = 160
+            var playbackRate = desiredBPM / track.meta.bpm;
+            self.setPlaybackRate(playbackRate);
+        }
     });
     this.initJPlayer();
 }
@@ -317,8 +322,6 @@ PlaylistManager.prototype = {
                 cssSelectorAncestor: self.cssSelectorJPlayerControls,
                 errorAlerts: false,
                 repeat: self._getRepeatHandler()
-//                playbackRate:1.5,
-//                defaultPlaybackRate:1.5
             });
             this.cssSelector.next = this.cssSelectorJPlayerControls + " .jp-next";
             this.cssSelector.previous = this.cssSelectorJPlayerControls + " .jp-previous";
@@ -426,6 +429,10 @@ PlaylistManager.prototype = {
     },
     resetPlaybackRate : function(){
         $(this.cssSelectorjPlayer).jPlayer("playbackRate", 1);
+        return false;
+    },
+    setPlaybackRate : function(pbr){
+        $(this.cssSelectorjPlayer).jPlayer("playbackRate", pbr);
         return false;
     },
     download : function(){
