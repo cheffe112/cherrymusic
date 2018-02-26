@@ -36,12 +36,13 @@ from tinytag import TinyTag
 
 
 class Metainfo():
-    def __init__(self, artist='', album='', title='', track='', length=0):
+    def __init__(self, artist='', album='', title='', track='', length=0, bpm=0):
         self.artist = artist
         self.album = album
         self.title = title
         self.track = track
         self.length = length
+        self.bpm = bpm
 
     def dict(self):
         return {
@@ -49,7 +50,8 @@ class Metainfo():
             'album': self.album,
             'title': self.title,
             'track': self.track,
-            'length': self.length
+            'length': self.length,
+            'bpm': self.bpm
         }
 
 
@@ -58,9 +60,9 @@ def getSongInfo(filepath):
         tag = TinyTag.get(filepath)
     except LookupError:
         return Metainfo()
-    # make sure everthing returned (except length) is a string
+    # make sure everthing returned (except length and tempo) is a string
     for attribute in ['artist','album','title','track']:
         if getattr(tag, attribute) is None:
             setattr(tag, attribute, '')
-    return Metainfo(tag.artist, tag.album, tag.title, str(tag.track), tag.duration)
+    return Metainfo(tag.artist, tag.album, tag.title, str(tag.track), tag.duration, tag.bpm)
 
