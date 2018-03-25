@@ -257,6 +257,7 @@ PlaylistManager = function(){
     this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
     this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
     this.cssSelector.playbackRateReset = this.cssSelectorJPlayerControls + " .jp-playback-rate-reset";
+    this.cssSelector.tempoReset = this.cssSelectorJPlayerControls + " .jp-tempo-reset";
 
     $(this.cssSelectorjPlayer).bind($.jPlayer.event.ready, function(event) {
         self.restorePlaylists();
@@ -285,15 +286,17 @@ PlaylistManager = function(){
         if (track) {
             self.setAlbumArtDisplay(track);
         }
-        if (userOptions.misc.automatic_tempo && track.meta && track.meta.bpm && track.meta.bpm > 0) {
-            var desiredBPM = 40
-            //var desiredBPM = userOptions.misc.automatic_tempo_value;
-            console.log("setting automatic tempo");
-            if (userOptions.misc.automatic_tempo_unit == 'mpm') {
-                desiredBPM = desiredBPM * 4;
+        if (userOptions.misc.automatic_tempo) {
+            var targetTempo = self.jPlayerInstance.data('jPlayer').options['tempo'];
+            if (targetTempo > 0 && track.meta && track.meta.bpm && track.meta.bpm > 0) {
+                if (userOptions.misc.automatic_tempo_unit == 'mpm') {
+                    targetTempo = targetTempo * 4;
+                }
+                var playbackRate = targetTempo / track.meta.bpm;
+                self.setPlaybackRate(playbackRate);
+            } else {
+                self.setPlaybackRate(1);
             }
-            var playbackRate = desiredBPM / track.meta.bpm;
-            self.setPlaybackRate(playbackRate);
         }
     });
     this.initJPlayer();
@@ -333,6 +336,7 @@ PlaylistManager.prototype = {
             this.cssSelector.shuffle = this.cssSelectorJPlayerControls + " .jp-shuffle";
             this.cssSelector.shuffleOff = this.cssSelectorJPlayerControls + " .jp-shuffle-off";
             this.cssSelector.playbackRateReset = this.cssSelectorJPlayerControls + " .jp-playback-rate-reset";
+            this.cssSelector.tempoReset = this.cssSelectorJPlayerControls + " .jp-tempo-reset";
             this.cssSelector.download = this.cssSelectorJPlayerControls + " .jp-download";
 
             /* JPLAYER EVENT BINDINGS */
@@ -377,6 +381,11 @@ PlaylistManager.prototype = {
 
             $(this.cssSelector.playbackRateReset).click(function() {
                 self.resetPlaybackRate();
+                $(this).blur();
+                return false;
+            });
+            $(this.cssSelector.tempoReset).click(function() {
+                self.resetTempo();
                 $(this).blur();
                 return false;
             });
@@ -438,6 +447,14 @@ PlaylistManager.prototype = {
     },
     setPlaybackRate : function(pbr){
         $(this.cssSelectorjPlayer).jPlayer("playbackRate", pbr);
+        return false;
+    },
+    resetTempo : function(){
+        $(this.cssSelectorjPlayer).jPlayer("tempo", 0);
+        return false;
+    },
+    setTempo : function(tempo){
+        $(this.cssSelectorjPlayer).jPlayer("tempo", tempo);
         return false;
     },
     download : function(){

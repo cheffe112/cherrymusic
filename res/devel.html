@@ -509,7 +509,7 @@
                         </ul>
                         <ul class="jp-playback-rate-toggles">
                             <li><a href="javascript:;" class="jp-playback-rate-reset btn btn-default btn-xs" tabindex="1" title="reset playback rate">
-                                <span class="glyphicon glyphicon-expand"></span>
+                                <span class="glyphicon glyphicon-refresh"></span>
                             </a></li>
                             <li>
                                 <div class="jp-playback-rate-value"></div>
@@ -520,9 +520,18 @@
                                 </div>
                             </li>
                         </ul>
+                        <!--ul class="jp-tempo-toggles">
+                            <li>
+                                <div class="jp-tempo-bar progress pointer">
+                                    <input id="spinner" name="jp-tempo-bar-spinner">
+                                </div>
+                            </li>
+                        </ul-->
+                        <ul class="jp-tempo-toggles">
+                            <input type="number" style="text-align: right;" class="jp-tempo-input form-control" value="0" min="0" max="200">
+                        </ul>
                     </div>
-
-
+                    
                     <div class="cm-playlistplaytime"></div>
 
                     <ul class="jp-toggles">

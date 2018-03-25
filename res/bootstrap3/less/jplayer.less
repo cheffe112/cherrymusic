@@ -61,8 +61,8 @@
     &-control-buttons{
         position: absolute;
         left: 50%;
-        width: 440px;
-        margin-left: -220px;
+        width: 580px;
+        margin-left: -290px;
         bottom: 42px
     }
 
@@ -79,19 +79,17 @@
         float: right;
         margin-right: 5px;
     }
-
     &-toggles{
         list-style-type: none;
         padding: 0;
         position: absolute;
         bottom: 4px;
         left: 50%;
-        margin-left: 130px
+        margin-left: 150px
     }
     &-toggles li{
         display: inline-block;
     }
-
     &-controls li{
         display: inline;
     }
@@ -154,6 +152,53 @@
             margin-left: 6px;
             padding: 1px 4px !important;
             top: 0;
+        }
+    }
+    &-tempo{    
+        &-value{
+            float: left;
+            margin-left: 5px;
+            top: 28px;
+        }
+        &-input{
+            width: 70px;
+        }
+        &-toggles{
+            list-style: none outside none;
+            position: absolute;
+            left: 355px;
+            padding: 0;
+            width: 100px;
+        }
+        &-bar{
+            margin-left: 6px;
+            height: 6px !important;
+            position: absolute;
+            width: 60px;
+            top: 28px;
+        }
+        &-bar-value{
+            top: 0;
+        }
+        &-toggles li{
+            display: inline-block;
+        }
+        &-reset{
+            margin-left: 6px;
+            padding: 1px 4px !important;
+            top: 0;
+        }
+        &-up{
+            margin-left: 60px;
+            padding: 1px 4px !important;
+            top: 0;
+            font-size: 6px;
+        }
+        &-down{
+            margin-left: 70px;
+            padding: 1px 4px !important;
+            top: 0;
+            font-size: 6px;
         }
     }
 }
