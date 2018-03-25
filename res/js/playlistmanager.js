@@ -286,17 +286,11 @@ PlaylistManager = function(){
         if (track) {
             self.setAlbumArtDisplay(track);
         }
-        if (userOptions.misc.automatic_tempo) {
-            var targetTempo = self.jPlayerInstance.data('jPlayer').options['tempo'];
-            if (targetTempo > 0 && track.meta && track.meta.bpm && track.meta.bpm > 0) {
-                if (userOptions.misc.automatic_tempo_unit == 'mpm') {
-                    targetTempo = targetTempo * 4;
-                }
-                var playbackRate = targetTempo / track.meta.bpm;
-                self.setPlaybackRate(playbackRate);
-            } else {
-                self.setPlaybackRate(1);
-            }
+        self.resetPlaybackRate();
+        if (track.meta && track.meta.bpm && track.meta.bpm > 0) {
+            self.setBPM(track.meta.bpm);
+        } else {
+            self.setBPM(0);
         }
     });
     this.initJPlayer();
@@ -453,8 +447,9 @@ PlaylistManager.prototype = {
         $(this.cssSelectorjPlayer).jPlayer("tempo", 0);
         return false;
     },
-    setTempo : function(tempo){
-        $(this.cssSelectorjPlayer).jPlayer("tempo", tempo);
+    setBPM : function(bpm){
+        // this calls the "bpm" method in jPlayer
+        $(this.cssSelectorjPlayer).jPlayer("bpm", bpm);
         return false;
     },
     download : function(){

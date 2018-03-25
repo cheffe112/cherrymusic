@@ -64,7 +64,9 @@ class UserOptionDB:
         with c['misc.automatic_tempo'] as automatic_tempo:
             automatic_tempo.value = False
         with c['misc.automatic_tempo_unit'] as automatic_tempo_unit:
-            automatic_tempo_unit.value = 'bpm'
+            automatic_tempo_unit.value = 'mpm'
+        with c['misc.tempo'] as tempo:
+            tempo.value = 40
         with c['custom_theme.primary_color'] as primary_color:
             primary_color.value = '#F02E75'
             primary_color.valid = '#[0-9a-fA-F]{6}'

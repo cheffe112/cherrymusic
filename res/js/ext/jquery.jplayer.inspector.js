@@ -101,7 +101,7 @@
 						+ '<div id="' + config.eventId[$.jPlayer.event.emptied] + '" style="' + eventStyle + '"></div>'
 						+ '<div id="' + config.eventId[$.jPlayer.event.stalled] + '" style="' + eventStyle + '"></div>'
 						+ '<div id="' + config.eventId[$.jPlayer.event.ratechange] + '" style="' + eventStyle + '"></div>'
-						+ '<div id="' + config.eventId[$.jPlayer.event.tempochange] + '" style="' + eventStyle + '"></div>'
+						+ '<div id="' + config.eventId[$.jPlayer.event.bpmchange] + '" style="' + eventStyle + '"></div>'
 						+ '<div id="' + config.eventId[$.jPlayer.event.durationchange] + '" style="' + eventStyle + '"></div>'
 
 						+ '<div style="clear:both"></div>';

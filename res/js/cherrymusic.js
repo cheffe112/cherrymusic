@@ -250,7 +250,8 @@ function loadUserOptions(onSuccess){
 
         $('#misc-autoplay_on_add').attr('checked',userOptions.misc.autoplay_on_add);
         $('#misc-automatic_tempo').attr('checked',userOptions.misc.automatic_tempo);
-        $('#misc-automatic_tempo_unit').attr('checked',userOptions.misc.automatic_tempo_unit);
+        $('#misc-automatic_tempo_unit').val(userOptions.misc.automatic_tempo_unit);
+        $('#misc-tempo').val(userOptions.misc.tempo);
         $('#ui-confirm_quit_dialog').attr('checked',userOptions.ui.confirm_quit_dialog);
         $('#ui-display_album_art').attr('checked',userOptions.ui.display_album_art);
 
@@ -1060,6 +1061,18 @@ function userOptionMultivalListener(selector, optionname) {
     });
 }
 
+function userOptionInputListener(selector, optionname) {
+    $(selector).on('change',function(){
+        var self = this;
+        optionSetter(   optionname,
+                        $(this).value(),
+                        function(){
+                        },
+                        errorFunc('Error setting option! '+optionname)
+        );
+    });
+}
+
 /*****************************
 CONDITIONAL USER INTERFACE
  *****************************/
@@ -1276,6 +1289,8 @@ $(document).ready(function(){
                                'misc.automatic_tempo');
     userOptionMultivalListener("select[name='misc-automatic_tempo_unit']",
                                 'misc.automatic_tempo_unit');
+    userOptionInputListener("#misc-tempo",
+                                'misc.tempo');
     userOptionCheckboxListener('#ui-confirm_quit_dialog',
                                'ui.confirm_quit_dialog');
     userOptionCheckboxListener('#ui-display_album_art',
